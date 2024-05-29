@@ -2,6 +2,7 @@ import { Provider } from "react-redux";
 import store from "./store";
 import AddExercise from "./components/AddExercise";
 import ExerciseList from "./components/ExerciseList";
+import "./App.css";
 
 function App() {
   return (
