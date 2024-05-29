@@ -1,17 +1,23 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addExercise } from "../actions";
+import "../App.css";
 
 const AddExercise = () => {
   const [name, setName] = useState("");
   const [reps, setReps] = useState("");
   const [duration, setDuration] = useState("");
-  const [type, setType] = useState("Kardiyo");
-  const [difficulty, setDifficulty] = useState("Kolay");
+  const [type, setType] = useState("");
+  const [difficulty, setDifficulty] = useState("");
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!type || !difficulty) {
+      alert("Lütfen egzersiz türünü ve zorluk seviyesini seçiniz.");
+      return;
+    }
+
     const newExercise = {
       id: Date.now(),
       name,
@@ -24,8 +30,8 @@ const AddExercise = () => {
     setName("");
     setReps("");
     setDuration("");
-    setType("Kardiyo");
-    setDifficulty("Kolay");
+    setType("");
+    setDifficulty("");
   };
 
   return (
@@ -52,6 +58,9 @@ const AddExercise = () => {
         required
       />
       <select value={type} onChange={(e) => setType(e.target.value)} required>
+        <option disabled value="">
+          Egzersiz Türü Seçiniz
+        </option>
         <option value="Kardiyo">Kardiyo</option>
         <option value="Güç">Güç</option>
         <option value="Esneklik">Esneklik</option>
@@ -61,6 +70,9 @@ const AddExercise = () => {
         onChange={(e) => setDifficulty(e.target.value)}
         required
       >
+        <option disabled value="">
+          Zorluk Seviyesi Seçiniz
+        </option>
         <option value="Kolay">Kolay</option>
         <option value="Orta">Orta</option>
         <option value="Zor">Zor</option>

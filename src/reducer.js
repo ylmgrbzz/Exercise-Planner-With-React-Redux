@@ -1,4 +1,4 @@
-import { ADD_EXERCISE, REMOVE_EXERCISE } from "./actions";
+import { ADD_EXERCISE, REMOVE_EXERCISE, EDIT_EXERCISE } from "./actions";
 
 const initialState = {
   exercises: [],
@@ -16,6 +16,13 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         exercises: state.exercises.filter(
           (exercise) => exercise.id !== action.payload
+        ),
+      };
+    case EDIT_EXERCISE: // Yeni case
+      return {
+        ...state,
+        exercises: state.exercises.map((exercise) =>
+          exercise.id === action.payload.id ? action.payload : exercise
         ),
       };
     default:
