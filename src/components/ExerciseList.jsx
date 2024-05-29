@@ -11,7 +11,8 @@ const ExerciseList = () => {
       {exercises.map((exercise) => (
         <li key={exercise.id}>
           <span>
-            {exercise.name} - {exercise.reps} tekrar
+            {exercise.name} - {exercise.reps} tekrar - {exercise.duration}{" "}
+            dakika - {exercise.type} - {exercise.difficulty}
           </span>
           <button onClick={() => dispatch(removeExercise(exercise.id))}>
             Sil
