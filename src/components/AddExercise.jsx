@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { addExercise } from "../actions";
 import "../App.css";
@@ -10,6 +10,21 @@ const AddExercise = () => {
   const [type, setType] = useState("");
   const [difficulty, setDifficulty] = useState("");
   const dispatch = useDispatch();
+  const [submitted, setSubmitted] = useState(false); // Submit durumunu takip etmek için state
+
+  useEffect(() => {
+    console.log("AddExercise bileşeni mount edildi");
+    return () => {
+      console.log("AddExercise bileşeni unmount edildi");
+    };
+  }, []);
+
+  useEffect(() => {
+    if (submitted) {
+      console.log("Form submitted!");
+      setSubmitted(false);
+    }
+  }, [submitted]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -77,7 +92,14 @@ const AddExercise = () => {
         <option value="Orta">Orta</option>
         <option value="Zor">Zor</option>
       </select>
-      <button type="submit">Ekle</button>
+      <button
+        onClick={() => {
+          setSubmitted(true);
+        }}
+        type="submit"
+      >
+        Ekle
+      </button>
     </form>
   );
 };

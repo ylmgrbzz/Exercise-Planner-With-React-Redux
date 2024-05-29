@@ -18,7 +18,7 @@ const rootReducer = (state = initialState, action) => {
           (exercise) => exercise.id !== action.payload
         ),
       };
-    case EDIT_EXERCISE: // Yeni case
+    case EDIT_EXERCISE:
       return {
         ...state,
         exercises: state.exercises.map((exercise) =>

@@ -13,10 +13,9 @@ const ExerciseList = () => {
   const [duration, setDuration] = useState("");
   const [type, setType] = useState("");
   const [difficulty, setDifficulty] = useState("");
-  const [isEditing, setIsEditing] = useState(false); // Düzenleme modu
-  const [editId, setEditId] = useState(null); // Düzenlenecek egzersiz id'si
+  const [isEditing, setIsEditing] = useState(false);
+  const [editId, setEditId] = useState(null);
 
-  // Düzenleme moduna geçmek için
   const handleEdit = (id) => {
     const exerciseToEdit = exercises.find((exercise) => exercise.id === id);
     setName(exerciseToEdit.name);
